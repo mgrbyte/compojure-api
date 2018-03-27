@@ -292,8 +292,8 @@
         (let [[status body] (get* app "/resource" {:x 1, :y 2})]
           status => 200
           body => {:total 3})
-        (let [[status body] (get* app "/resource" {:x -1, :y -2})]
-          status => 500
+        (let [[status body] (get* app "/resource" {:x -1, :y -3})]
+          status => 400
           body => (contains {:coercion "spec"
                              :in ["response" "body"]})))
 

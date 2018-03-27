@@ -31,6 +31,8 @@
     :request         raw request
     :response        raw response"
   [e data req]
+  (when (= (:uri req) "/resource")
+    (println "RESPONSE VALIDATION ERROR:" (get-in data [:problems])))
   (response/internal-server-error
     (-> data
         (dissoc :request :response)
@@ -50,6 +52,8 @@
     :error           schema error
     :request         raw request"
   [e data req]
+  (when (= (:uri req) "/resource")
+    (println "REQUEST VALIDATION ERROR:" (get-in data [:problems])))
   (response/bad-request
     (-> data
         (dissoc :request)
